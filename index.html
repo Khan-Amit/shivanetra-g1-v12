@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivanetra Engine</title>
+  <title>Shivanetra Suite</title>
   <style>
-    /* Reset & Mobile-First Pure Layout Architecture */
+    /* Mobile-First Pure CSS Matrix Rules */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #000000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; max-width: 420px; margin: 0 auto; }
+    body { background-color: #000000; color: #ffffff; font-family: -apple-system, sans-serif; padding: 20px; max-width: 420px; margin: 0 auto; }
     
     header { text-align: center; padding: 25px 0; border-bottom: 1px solid #1c1c1c; margin-bottom: 25px; }
     h1 { font-size: 34px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 4px; }
@@ -20,9 +20,8 @@
     input[type="text"], input[type="time"], select {
       width: 100%; background-color: #141414; border: 1px solid #262626; color: #ffffff; 
       padding: 12px; font-size: 14px; border-radius: 6px; outline: none; display: block;
-      -webkit-appearance: none; -moz-appearance: none; appearance: none;
+      -webkit-appearance: none; appearance: none;
     }
-    input:focus, select:focus { border-color: #ffffff; }
     
     select {
       background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://w3.org'><path d='M7 10l5 5 5-5z'/></svg>");
@@ -38,12 +37,12 @@
 
     .natal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; max-width: 290px; margin: 20px auto; background-color: #d4d4d4; padding: 2px; border-radius: 4px; }
     .natal-cell { background-color: #ffffff; color: #000000; height: 75px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; font-family: monospace; font-size: 10px; }
-    .natal-cell .label { color: #8a8a8a; font-size: 9px; font-weight: bold; text-align: left; }
-    .natal-cell .val { font-weight: 900; text-align: center; color: #111; line-height: 1.2; white-space: pre-line; }
+    .natal-cell .label { color: #8a8a8a; font-size: 9px; font-weight: bold; }
+    .natal-cell .val { font-weight: 900; text-align: center; color: #111; line-height: 1.2; }
     .natal-center { background-color: #f4f4f4; color: #737373; justify-content: center; align-items: center; font-weight: 900; font-size: 10px; letter-spacing: 1px; }
 
     .tab-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; }
-    .tab-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 8px 0; cursor: pointer; outline: none; }
+    .tab-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 8px 0; cursor: pointer; }
     .tab-active { color: #48BB78; border-bottom: 2px solid #48BB78; }
     
     .pred-item { background-color: #000000; border: 1px solid #111; padding: 14px; border-radius: 6px; margin-bottom: 10px; }
@@ -70,7 +69,7 @@
   </header>
 
   <main>
-    <!-- PAGE 1: MANUAL DROPDOWN REGISTRY -->
+    <!-- PAGE 1: INPUT AND PERSISTENT LOGIN CORE -->
     <section id="step-1" class="card">
       <div class="form-group">
         <label>Full Birth Name</label>
@@ -104,10 +103,10 @@
       </div>
     </section>
 
-    <!-- PAGE 2: SURYA SIDDHANTA DATA ENGINE & NATAL PLACEMENTS -->
+    <!-- PAGE 2: SURYA SIDDHANTA LOG & INVERTED NATAL CHART -->
     <section id="step-2" class="card hidden">
       <label style="margin-bottom: 8px;">a. Surya Siddhanta Log Data</label>
-      <div id="surya-log" class="log-box" style="margin-bottom: 20px;"></div>
+      <div id="surya-log" class="log-box" style="margin-bottom: 20px;">Retrieving Star Vectors...</div>
 
       <label style="margin-bottom: 8px;">e. Calculated Natal Chart Grid</label>
       <div class="natal-grid">
@@ -123,14 +122,14 @@
       </div>
     </section>
 
-    <!-- PAGE 3: KABBALAH VIBRATORY SIGNATURE PANEL -->
+    <!-- PAGE 3: KABBALAH CALCULATION REFLECTION -->
     <section id="step-3" class="card hidden text-center">
       <label>b. Kabbalah Alphanumeric Result</label>
       <div id="kabala-val" style="font-size: 64px; font-weight: 900; color: #48BB78; padding: 20px 0;">--</div>
       <p id="kabala-desc" class="pred-text" style="color: #a3a3a3;"></p>
     </section>
 
-    <!-- PAGE 4: CHINESE LO SHU GRID CANVAS -->
+    <!-- PAGE 4: CHINESE FENG SHUI / LO SHU MATRIX -->
     <section id="step-4" class="card hidden">
       <label class="text-center">c. Lo Shu Grid Metaphysics</label>
       <div class="loshu-grid">
@@ -143,7 +142,7 @@
       </p>
     </section>
 
-    <!-- PAGE 5: INTEGRATED CHRONO-TIMELINE OUTPUT DASHBOARD -->
+    <!-- PAGE 5: COMBINED TIMELINE DASHBOARD -->
     <section id="step-5" class="card hidden">
       <div class="tab-container">
         <button id="tab-f" class="tab-btn tab-active">f. Daily</button>
@@ -154,3 +153,4 @@
       <div class="pred-item"><span class="pred-title">🏥 Health</span><p id="p-health" class="pred-text"></p></div>
       <div class="pred-item"><span class="pred-title">✈️ Travel</span><p id="p-travel" class="pred-text"></p></div>
       <div class="pred-item"><span class="pred-title">💰 Money</span><p id="p-money" class="pred-text"></p></div>
+      <div class="pred-item"><span class="pred-title">❤️ Love</span><p id="p-love" class="pred-text"></p></div>
