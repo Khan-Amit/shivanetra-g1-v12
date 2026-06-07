@@ -3,168 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivanetra Engine</title>
-  <script src="https://tailwindcss.com"></script>
+  <title>Shivanetra Suite</title>
   <style>
-    body { background-color: #000000; color: #FFFFFF; font-family: ui-sans-serif, system-ui, sans-serif; }
-    .text-brand-green { color: #48BB78; }
-    .text-brand-red { color: #E53E3E; }
-    .bg-brand-red { background-color: #E53E3E; }
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://w3.org'><path d='M7 10l5 5 5-5z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 6px center;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #000000; color: #ffffff; font-family: -apple-system, system-ui, sans-serif; padding: 20px; max-width: 420px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 25px 0; border-bottom: 1px solid #1c1c1c; margin-bottom: 25px; }
+    h1 { font-size: 34px; font-weight: 900; tracking: 6px; color: #ffffff; text-transform: uppercase; }
+    .sub-head { color: #48BB78; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
+    
+    .card { background-color: #0b0b0b; border: 1px solid #1c1c1c; padding: 22px; border-radius: 8px; margin-bottom: 15px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 11px; color: #a3a3a3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    
+    input[type="text"], input[type="time"], select {
+      width: 100%; background-color: #141414; border: 1px solid #262626; color: #ffffff; 
+      padding: 12px; font-size: 14px; border-radius: 6px; outline: none; display: block;
     }
-    /* Smooth transition custom styles for floating panel layout */
-    .chat-head-bounce { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    input:focus, select:focus { border-color: #ffffff; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    
+    .loshu-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; max-width: 180px; margin: 20px auto; background-color: #000; padding: 6px; border: 1px solid #222; }
+    .loshu-cell { border: 1px solid #111; padding: 14px 0; text-align: center; font-size: 16px; color: #2a2a2a; font-weight: bold; }
+    .loshu-active { color: #48BB78 !important; font-weight: 900 !important; background-color: #141414; border-color: #48BB78; }
+
+    .natal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; max-width: 290px; margin: 20px auto; background-color: #d4d4d4; padding: 2px; border-radius: 4px; }
+    .natal-cell { background-color: #ffffff; color: #000000; height: 75px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; font-family: monospace; font-size: 10px; }
+    .natal-cell .label { color: #8a8a8a; font-size: 9px; font-weight: bold; }
+    .natal-cell .val { font-weight: 900; text-align: center; color: #111; line-height: 1.2; }
+    .natal-center { background-color: #f4f4f4; color: #737373; justify-content: center; align-items: center; font-weight: 900; font-size: 10px; letter-spacing: 1px; }
+
+    .tab-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; }
+    .tab-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 8px 0; cursor: pointer; }
+    .tab-active { color: #48BB78; border-bottom: 2px solid #48BB78; }
+    
+    .pred-item { background-color: #000000; border: 1px solid #111; padding: 14px; border-radius: 6px; margin-bottom: 10px; }
+    .pred-title { font-size: 10px; font-weight: bold; text-transform: uppercase; color: #48BB78; margin-bottom: 4px; display: block; }
+    .pred-text { font-size: 13px; color: #d4d4d4; text-align: justify; line-height: 1.4; }
+    
+    footer { border-top: 1px solid #1c1c1c; margin-top: 40px; padding-top: 20px; }
+    .btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
+    button.primary { flex: 1; background-color: #ffffff; color: #000000; border: none; padding: 15px; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border-radius: 6px; cursor: pointer; }
+    button.secondary { width: 35%; background-color: #000; color: #ffffff; border: 1px solid #222; padding: 15px; font-size: 12px; font-weight: bold; text-transform: uppercase; border-radius: 6px; cursor: pointer; }
+    .dl-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; text-decoration: underline; cursor: pointer; }
+    .version-tag { float: right; font-size: 10px; font-family: monospace; color: #262626; letter-spacing: 1px; }
+    
+    .hidden { display: none !important; }
+    .text-center { text-align: center; }
+    .log-box { font-family: monospace; font-size: 11px; color: #a3a3a3; background-color: #000; padding: 10px; border-radius: 4px; border: 1px solid #111; word-break: break-all; }
   </style>
 </head>
-<body class="flex flex-col min-h-screen justify-between p-4 max-w-md mx-auto relative select-none">
+<body>
 
-  <!-- STARK BLACK HEADER BLOCK WITH WHITE BOLD TYPOGRAPHY -->
-  <header class="bg-black text-center pt-6 pb-4 border-b border-neutral-900">
-    <h1 class="text-3xl font-black tracking-widest text-white uppercase">
-      SHIVANETRA
-    </h1>
-    <p id="sub-header" class="text-brand-green text-xs font-bold tracking-widest uppercase mt-2">
-      Daily Horoscope Calculator
-    </p>
+  <header>
+    <h1>SHIVANETRA</h1>
+    <div id="sub-header" class="sub-head">Daily Horoscope Calculator</div>
   </header>
 
-  <!-- STEP ROUTER MAIN INTERFACE -->
-  <main class="flex-grow flex flex-col justify-center my-6">
-    
-    <!-- PAGE 1: UNIVERSAL LANDING PAGE -->
-    <section id="step-1" class="space-y-4">
-      <div class="space-y-3 bg-neutral-950 p-5 rounded-lg border border-neutral-900">
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Full Birth Name</label>
-          <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="Enter full name">
+  <main>
+    <!-- PAGE 1: DROP-DOWN INPUT LAYOUT -->
+    <section id="step-1" class="card">
+      <div class="form-group">
+        <label>Full Birth Name</label>
+        <input type="text" id="input-name" placeholder="Enter full name">
+      </div>
+      
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <div class="grid-3">
+          <select id="dob-day"><option value="">Day</option></select>
+          <select id="dob-month">
+            <option value="">Month</option>
+            <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+            <option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+            <option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+            <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+          </select>
+          <select id="dob-year"><option value="">Year</option></select>
         </div>
+      </div>
 
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Date of Birth</label>
-          <div class="grid grid-cols-3 gap-2">
-            <div>
-              <select id="dob-day" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
-                <option value="">Day</option>
-              </select>
-            </div>
-            <div>
-              <select id="dob-month" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
-                <option value="">Month</option>
-                <option value="01">Jan</option>
-                <option value="02">Feb</option>
-                <option value="03">Mar</option>
-                <option value="04">Apr</option>
-                <option value="05">May</option>
-                <option value="06">Jun</option>
-                <option value="07">Jul</option>
-                <option value="08">Aug</option>
-                <option value="09">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-              </select>
-            </div>
-            <div>
-              <select id="dob-year" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
-                <option value="">Year</option>
-              </select>
-            </div>
-          </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Birth Time</label>
+          <input type="time" id="input-time">
         </div>
-
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Time</label>
-            <input type="time" id="input-time" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white">
-          </div>
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Place</label>
-            <input type="text" id="input-place" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="e.g. Dhaka, London">
-          </div>
+        <div class="form-group">
+          <label>Birth Place</label>
+          <input type="text" id="input-place" placeholder="e.g. Dhaka">
         </div>
       </div>
     </section>
 
-    <!-- PAGE 2: HOROSCOPE & NATAL CHART -->
-    <section id="step-2" class="hidden space-y-4">
-      <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-4">
-        <div>
-          <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-1">a. Surya Siddhanta Log Data</h3>
-          <p id="surya-log" class="text-xs text-neutral-400 font-mono bg-black p-2 rounded border border-neutral-900 text-justify">Initializing alignment matrices via solar coordinates...</p>
-        </div>
-        
-        <div>
-          <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">e. Calculated Natal Chart Grid</h3>
-          <div id="natal-chart-slot" class="grid grid-cols-3 gap-2 text-center font-mono text-xs text-neutral-400 bg-black p-3 border border-neutral-900">
-            <div class="border border-neutral-800 p-2">H1</div><div class="border border-neutral-800 p-2">H2</div><div class="border border-neutral-800 p-2">H3</div>
-            <div class="border border-neutral-800 p-2">H4</div><div class="border border-neutral-800 p-2 text-brand-green font-bold">ASC</div><div class="border border-neutral-800 p-2">H5</div>
-            <div class="border border-neutral-800 p-2">H6</div><div class="border border-neutral-800 p-2">H7</div><div class="border border-neutral-800 p-2">H8</div>
-          </div>
-        </div>
+    <!-- PAGE 2: HIGH-CONTRAST NATAL CHART GRID -->
+    <section id="step-2" class="card hidden">
+      <label style="margin-bottom: 8px;">a. Surya Siddhanta Log Data</label>
+      <div id="surya-log" class="log-box" style="margin-bottom: 20px;"></div>
+
+      <label style="margin-bottom: 8px;">e. Calculated Natal Chart Grid</label>
+      <div class="natal-grid">
+        <div class="natal-cell"><span class="label">XII</span><span class="val" id="nc-12">-</span></div>
+        <div class="natal-cell" style="color:#E53E3E;"><span class="label">I</span><span class="val" id="nc-1">ASC</span></div>
+        <div class="natal-cell"><span class="label">II</span><span class="val" id="nc-2">-</span></div>
+        <div class="natal-cell"><span class="label">XI</span><span class="val" id="nc-11">-</span></div>
+        <div class="natal-cell natal-center">SURYA</div>
+        <div class="natal-cell"><span class="label">III</span><span class="val" id="nc-3">-</span></div>
+        <div class="natal-cell"><span class="label">X</span><span class="val" id="nc-10">-</span></div>
+        <div class="natal-cell" style="color:#e53e3e;"><span class="label">IX</span><span class="val" id="nc-9">-</span></div>
+        <div class="natal-cell"><span class="label">IV</span><span class="val" id="nc-4">-</span></div>
       </div>
     </section>
 
-    <!-- PAGE 3: KABBALAH CODE -->
-    <section id="step-3" class="hidden space-y-3">
-      <div class="border border-neutral-800 p-5 rounded bg-neutral-950 space-y-3 text-center">
-        <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-widest">b. Kabbalah Alphanumeric Result</h3>
-        <div class="text-5xl font-black text-brand-green py-4 tracking-tighter" id="kabala-val">77</div>
-        <p id="kabala-desc" class="text-xs text-neutral-400 text-justify px-2">The cosmic frequencies suggest high energetic transformation path matching root frequency parameters.</p>
-      </div>
+    <!-- PAGE 3: KABBALAH VALUE PAGE -->
+    <section id="step-3" class="card hidden text-center">
+      <label>b. Kabbalah Alphanumeric Result</label>
+      <div id="kabala-val" style="font-size: 64px; font-weight: 900; color: #48BB78; padding: 20px 0;">--</div>
+      <p id="kabala-desc" class="pred-text" style="color: #a3a3a3;"></p>
     </section>
 
-    <!-- PAGE 4: FENG SHUI / LO SHU & CHINESE ZODIAC -->
-    <section id="step-4" class="hidden space-y-4">
-      <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-3">
-        <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-widest text-center">c. Lo Shu Grid Metaphysics</h3>
-        
-        <div class="grid grid-cols-3 gap-1 max-w-[160px] mx-auto text-center font-bold text-sm bg-black p-1 border border-neutral-900">
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-4">4</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-9">9</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-2">2</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-3">3</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-5">5</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-7">7</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-8">8</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-1">1</div>
-          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-6">6</div>
-        </div>
-        
-        <p class="text-center text-xs text-neutral-300 border-t border-neutral-900 pt-2 font-mono">
-          Calculated Chinese Zodiac: <span id="zodiac-val" class="text-brand-green font-bold">Dragon</span>
-        </p>
+    <!-- PAGE 4: FENG SHUI / LO SHU DISPLAY LAYOUT -->
+    <section id="step-4" class="card hidden">
+      <label class="text-center">c. Lo Shu Grid Metaphysics</label>
+      <div class="loshu-grid">
+        <div class="loshu-cell" id="ls-4">4</div><div class="loshu-cell" id="ls-9">9</div><div class="loshu-cell" id="ls-2">2</div>
+        <div class="loshu-cell" id="ls-3">3</div><div class="loshu-cell" id="ls-5">5</div><div class="loshu-cell" id="ls-7">7</div>
+        <div class="loshu-cell" id="ls-8">8</div><div class="loshu-cell" id="ls-1">1</div><div class="loshu-cell" id="ls-6">6</div>
       </div>
+      <p class="text-center" style="font-size: 12px; color: #a3a3a3; margin-top: 15px; font-family: monospace;">
+        Calculated Chinese Zodiac: <span id="zodiac-val" style="color:#48BB78; font-weight: bold;">--</span>
+      </p>
     </section>
 
-    <!-- PAGE 5: DYNAMIC PREDICTIONS PANEL -->
-    <section id="step-5" class="hidden space-y-3">
-      <div class="grid grid-cols-3 gap-1 text-[10px] uppercase font-bold text-center border-b border-neutral-900 pb-2 mb-2">
-        <button id="tab-f" class="text-brand-green border-b-2 border-brand-green pb-1" onclick="switchPredictionTab('f')">f. Daily</button>
-        <button id="tab-g" class="text-neutral-500 pb-1" onclick="switchPredictionTab('g')">g. Monthly</button>
-        <button id="tab-d" class="text-neutral-500 pb-1" onclick="switchPredictionTab('d')">d. 60+30 Matrix</button>
+    <!-- PAGE 5: SYSTEM TIMELINE DASHBOARD -->
+    <section id="step-5" class="card hidden">
+      <div class="tab-container">
+        <button id="tab-f" class="tab-btn tab-active">f. Daily</button>
+        <button id="tab-g" class="tab-btn">g. Monthly</button>
+        <button id="tab-d" class="tab-btn">d. 60+30 Matrix</button>
       </div>
 
-      <div class="space-y-2 text-xs max-h-[260px] overflow-y-auto pr-1" id="predictions-box">
-        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
-          <span class="text-[10px] uppercase font-bold text-brand-green">🏥 Health</span>
-          <p id="p-health" class="text-neutral-400 mt-0.5 text-justify">Vitality levels stabilized. Maintain balanced hydration intervals.</p>
-        </div>
-        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
-          <span class="text-[10px] uppercase font-bold text-brand-green">✈️ Travel</span>
-          <p id="p-travel" class="text-neutral-400 mt-0.5 text-justify">Favorable paths lie toward the East sectors this afternoon.</p>
-        </div>
-        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
-          <span class="text-[10px] uppercase font-bold text-brand-green">💰 Money</span>
-          <p id="p-money" class="text-neutral-400 mt-0.5 text-justify">Refrain from abrupt financial changes for the next 12 hours.</p>
-        </div>
-        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
+      <div class="pred-item"><span class="pred-title">🏥 Health</span><p id="p-health" class="pred-text"></p></div>
+      <div class="pred-item"><span class="pred-title">✈️ Travel</span><p id="p-travel" class="pred-text"></p></div>
+      <div class="pred-item"><span class="pred-title">💰 Money</span><p id="p-money" class="pred-text"></p></div>
+      <div class="pred-item"><span class="pred-title">❤️ Love</span><p id="p-love" class="pred-text"></p></div>
+      <div class="pred-item" style="border-color: rgba(229,62,62,0.3);"><span class="pred-title" style="color:#E53E3E;">⚠️ Precautions</span><p id="p-precaution" class="pred-text"></p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="btn-group">
+      <button id="btn-back" class="secondary hidden">Back</button>
+      <button id="btn-next" class="primary">Next</button>
+    </div>
+    <button id="btn-download" class="dl-btn">💾 Download Page HTML</button>
+    <span class="version-tag">SHIVANETRA v1.0</span>
+  </footer>
+
+  <script>
