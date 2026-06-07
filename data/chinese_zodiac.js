@@ -1,10 +1,8 @@
-// c. Feng Shui / Chinese Zodiac Sign Engine
 export function calculateChineseZodiac(dobString) {
   const dob = new Date(dobString);
   const year = dob.getFullYear();
   const zodiacs = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
   
-  // Basic Lo Shu matrix tracker (returns array index of active numbers)
   const digits = dobString.replace(/-/g, "");
   const activeDigits = [...new Set([...digits])].map(Number).filter(n => n > 0);
 
