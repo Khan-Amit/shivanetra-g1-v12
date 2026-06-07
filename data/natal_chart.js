@@ -1,4 +1,3 @@
-// e. Natal Chart Creation Component
 export function generateNatalChartUI() {
   return `
     <div class="grid grid-cols-3 gap-1 text-center font-mono text-[10px] bg-black p-2 border border-neutral-900 rounded">
