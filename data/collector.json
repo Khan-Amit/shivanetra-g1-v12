@@ -1,0 +1,17 @@
+{
+  "api_registry": {
+    "astrology_endpoint": "https://allorigins.win",
+    "geocoding_endpoint": "https://openstreetmap.org"
+  },
+  "grown_database_records": {
+    "default": {
+      "Sun": 75.4,
+      "Moon": 182.1,
+      "Mars": 34.8,
+      "Mercury": 92.5,
+      "Jupiter": 102.3,
+      "Venus": 44.1,
+      "Saturn": 355.6
+    }
+  }
+}
