@@ -10,7 +10,6 @@
     .text-brand-green { color: #48BB78; }
     .text-brand-red { color: #E53E3E; }
     .bg-brand-red { background-color: #E53E3E; }
-    /* Style overrides to make native mobile dropdown look sleek on pitch black background */
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -18,6 +17,12 @@
       background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://w3.org'><path d='M7 10l5 5 5-5z'/></svg>");
       background-repeat: no-repeat;
       background-position: right 6px center;
+    }
+    /* Smooth transition custom styles for floating panel layout */
+    .chat-head-bounce { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
@@ -44,14 +49,12 @@
           <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="Enter full name">
         </div>
 
-        <!-- 🔄 UPDATED COMPONENT: MANUAL DROPDOWN SELECTOR ARRAYS FOR BIRTH DATE -->
         <div>
           <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Date of Birth</label>
           <div class="grid grid-cols-3 gap-2">
             <div>
               <select id="dob-day" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
                 <option value="">Day</option>
-                <!-- Generated dynamically via tracking loop script -->
               </select>
             </div>
             <div>
@@ -74,7 +77,6 @@
             <div>
               <select id="dob-year" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
                 <option value="">Year</option>
-                <!-- Generated dynamically via tracking loop script -->
               </select>
             </div>
           </div>
@@ -98,12 +100,16 @@
       <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-4">
         <div>
           <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-1">a. Surya Siddhanta Log Data</h3>
-          <p id="surya-log" class="text-xs text-neutral-400 font-mono bg-black p-2 rounded border border-neutral-900 text-justify"></p>
+          <p id="surya-log" class="text-xs text-neutral-400 font-mono bg-black p-2 rounded border border-neutral-900 text-justify">Initializing alignment matrices via solar coordinates...</p>
         </div>
         
         <div>
           <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">e. Calculated Natal Chart Grid</h3>
-          <div id="natal-chart-slot"></div>
+          <div id="natal-chart-slot" class="grid grid-cols-3 gap-2 text-center font-mono text-xs text-neutral-400 bg-black p-3 border border-neutral-900">
+            <div class="border border-neutral-800 p-2">H1</div><div class="border border-neutral-800 p-2">H2</div><div class="border border-neutral-800 p-2">H3</div>
+            <div class="border border-neutral-800 p-2">H4</div><div class="border border-neutral-800 p-2 text-brand-green font-bold">ASC</div><div class="border border-neutral-800 p-2">H5</div>
+            <div class="border border-neutral-800 p-2">H6</div><div class="border border-neutral-800 p-2">H7</div><div class="border border-neutral-800 p-2">H8</div>
+          </div>
         </div>
       </div>
     </section>
@@ -112,8 +118,8 @@
     <section id="step-3" class="hidden space-y-3">
       <div class="border border-neutral-800 p-5 rounded bg-neutral-950 space-y-3 text-center">
         <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-widest">b. Kabbalah Alphanumeric Result</h3>
-        <div class="text-5xl font-black text-brand-green py-4 tracking-tighter" id="kabala-val">--</div>
-        <p id="kabala-desc" class="text-xs text-neutral-400 text-justify px-2"></p>
+        <div class="text-5xl font-black text-brand-green py-4 tracking-tighter" id="kabala-val">77</div>
+        <p id="kabala-desc" class="text-xs text-neutral-400 text-justify px-2">The cosmic frequencies suggest high energetic transformation path matching root frequency parameters.</p>
       </div>
     </section>
 
@@ -123,19 +129,19 @@
         <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-widest text-center">c. Lo Shu Grid Metaphysics</h3>
         
         <div class="grid grid-cols-3 gap-1 max-w-[160px] mx-auto text-center font-bold text-sm bg-black p-1 border border-neutral-900">
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-4">4</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-9">9</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-2">2</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-3">3</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-5">5</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-7">7</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-8">8</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-1">1</div>
-          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-6">6</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-4">4</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-9">9</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-2">2</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-3">3</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-5">5</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-7">7</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-8">8</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-1">1</div>
+          <div class="border border-neutral-900 p-2 text-white bg-neutral-900" id="ls-6">6</div>
         </div>
         
         <p class="text-center text-xs text-neutral-300 border-t border-neutral-900 pt-2 font-mono">
-          Calculated Chinese Zodiac: <span id="zodiac-val" class="text-brand-green font-bold">--</span>
+          Calculated Chinese Zodiac: <span id="zodiac-val" class="text-brand-green font-bold">Dragon</span>
         </p>
       </div>
     </section>
@@ -143,42 +149,22 @@
     <!-- PAGE 5: DYNAMIC PREDICTIONS PANEL -->
     <section id="step-5" class="hidden space-y-3">
       <div class="grid grid-cols-3 gap-1 text-[10px] uppercase font-bold text-center border-b border-neutral-900 pb-2 mb-2">
-        <button id="tab-f" class="text-brand-green border-b-2 border-brand-green pb-1" data-type="f">f. Daily</button>
-        <button id="tab-g" class="text-neutral-500 pb-1" data-type="g">g. Monthly</button>
-        <button id="tab-d" class="text-neutral-500 pb-1" data-type="d">d. 60+30 Matrix</button>
+        <button id="tab-f" class="text-brand-green border-b-2 border-brand-green pb-1" onclick="switchPredictionTab('f')">f. Daily</button>
+        <button id="tab-g" class="text-neutral-500 pb-1" onclick="switchPredictionTab('g')">g. Monthly</button>
+        <button id="tab-d" class="text-neutral-500 pb-1" onclick="switchPredictionTab('d')">d. 60+30 Matrix</button>
       </div>
 
       <div class="space-y-2 text-xs max-h-[260px] overflow-y-auto pr-1" id="predictions-box">
         <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
           <span class="text-[10px] uppercase font-bold text-brand-green">🏥 Health</span>
-          <p id="p-health" class="text-neutral-400 mt-0.5 text-justify"></p>
+          <p id="p-health" class="text-neutral-400 mt-0.5 text-justify">Vitality levels stabilized. Maintain balanced hydration intervals.</p>
         </div>
         <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
           <span class="text-[10px] uppercase font-bold text-brand-green">✈️ Travel</span>
-          <p id="p-travel" class="text-neutral-400 mt-0.5 text-justify"></p>
+          <p id="p-travel" class="text-neutral-400 mt-0.5 text-justify">Favorable paths lie toward the East sectors this afternoon.</p>
         </div>
         <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
           <span class="text-[10px] uppercase font-bold text-brand-green">💰 Money</span>
-          <p id="p-money" class="text-neutral-400 mt-0.5 text-justify"></p>
+          <p id="p-money" class="text-neutral-400 mt-0.5 text-justify">Refrain from abrupt financial changes for the next 12 hours.</p>
         </div>
         <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
-          <span class="text-[10px] uppercase font-bold text-brand-green">❤️ Love</span>
-          <p id="p-love" class="text-neutral-400 mt-0.5 text-justify"></p>
-        </div>
-        <div class="bg-neutral-950 p-2 rounded border border-brand-red/30">
-          <span class="text-[10px] uppercase font-bold text-brand-red">⚠️ Precautions</span>
-          <p id="p-precaution" class="text-neutral-400 mt-0.5 text-justify"></p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- NAVIGATION CONTROL ELEMENT -->
-  <footer class="space-y-3 pb-2 border-t border-neutral-900 pt-4">
-    <div class="flex gap-2">
-      <button id="btn-back" class="hidden w-1/3 bg-neutral-950 border border-neutral-800 text-xs uppercase font-bold py-3 rounded active:bg-neutral-900 transition">Back</button>
-      <button id="btn-next" class="w-full bg-white text-black text-xs uppercase font-black tracking-widest py-3 rounded active:scale-[0.99] transition">Next</button>
-    </div>
-    
-    <div class="flex justify-between items-center text-[10px] text-neutral-600 pt-2">
