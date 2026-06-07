@@ -1,17 +1,30 @@
-{
-  "api_registry": {
-    "astrology_endpoint": "https://allorigins.win",
-    "geocoding_endpoint": "https://openstreetmap.org"
-  },
-  "grown_database_records": {
-    "default": {
-      "Sun": 75.4,
-      "Moon": 182.1,
-      "Mars": 34.8,
-      "Mercury": 92.5,
-      "Jupiter": 102.3,
-      "Venus": 44.1,
-      "Saturn": 355.6
-    }
-  }
+// This controller function hooks the data engine outputs straight into your frontend UI pages
+import { executeSuryaSiddhantaEngine } from './surya_engine.js';
+
+export async function processUnifiedMetaphysicalData(name, d, m, y, time, place) {
+  const tSplit = time.split(":");
+  const hrs = tSplit[0] ? parseInt(tSplit[0]) : 12;
+  const mins = tSplit[1] ? parseInt(tSplit[1]) : 0;
+
+  // 1. EXECUTE THE ROBUST ASTRONOMICAL ENGINE
+  const astroReport = executeSuryaSiddhantaEngine(parseInt(y), parseInt(m), parseInt(d), hrs, mins);
+  const dataNode = astroReport.planetaryPlacements;
+
+  // 2. REFLECT AND TRANSMIT REAL DATA STRAIGHT TO PAGE 2 (Surya Grid)
+  document.getElementById("surya-log").innerText = 
+    `AHARGANA COUNT: ${astroReport.calculatedAhargana}\n` +
+    `Sun Position: ${dataNode.Sun.rashiName} (${dataNode.Sun.degrees}°)\n` +
+    `Moon Position: ${dataNode.Moon.rashiName} (${dataNode.Moon.degrees}°)\n` +
+    `Mars Position: ${dataNode.Mars.rashiName} (${dataNode.Mars.degrees}°)`;
+
+  // Inject computed positions into the high-contrast chart matrix boxes
+  document.getElementById("nc-11").innerHTML = `Ju / Me<br><span style="font-size:8px;color:#48BB78;font-weight:900;">${dataNode.Jupiter.rashiName}</span>`;
+  document.getElementById("nc-3").innerHTML = `Su / Ve<br><span style="font-size:8px;color:#48BB78;font-weight:900;">${dataNode.Sun.rashiName}</span>`;
+  document.getElementById("nc-9").innerHTML = `Sa / Ra<br><span style="font-size:8px;color:#e53e3e;font-weight:900;">${dataNode.Saturn.rashiName}</span>`;
+
+  // 3. EXECUTE METAPHYSICAL DATA SAVER FOR PERMANENT PORTABILITY
+  const databaseSaveKey = `${y}${m}${d}`;
+  let portfolioDb = JSON.parse(localStorage.getItem("shivanetra_portfolio")) || {};
+  portfolioDb[databaseSaveKey] = dataNode;
+  localStorage.setItem("shivanetra_portfolio", JSON.stringify(portfolioDb));
 }
