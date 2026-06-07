@@ -1,0 +1,37 @@
+{
+  "kabala_engine": {
+    "alphabet_values": {
+      "a": 1, "j": 1, "s": 1, "b": 2, "k": 2, "t": 2, "c": 3, "l": 3, "u": 3,
+      "d": 4, "m": 4, "v": 4, "e": 5, "n": 5, "w": 5, "f": 6, "o": 6, "x": 6,
+      "g": 7, "p": 7, "y": 7, "h": 8, "q": 8, "z": 8, "i": 9, "r": 9
+    },
+    "template_text": "The phonetic tracking loop yields a Kabbalah signature number of "
+  },
+  "fensui_engine": {
+    "zodiac_animals": ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"],
+    "lo_shu_positions": ["ls-4", "ls-9", "ls-2", "ls-3", "ls-5", "ls-7", "ls-8", "ls-1", "ls-6"]
+  },
+  "master_predictions": {
+    "daily": {
+      "health": "Solar transitions reinforce personal vitality indices today. Keep hydration patterns steady.",
+      "travel": "Short local transits run cleanly. Avoid sudden routing adjustments during evening high-congestion hours.",
+      "money": "A stable energetic window opens for balancing fine transactions or updating household ledgers.",
+      "love": "Communication lines flow without cosmic noise today. Upfront conversations easily resolve misunderstandings.",
+      "precautions": "Avoid rushing through basic manual routines. Exercise conscious physical awareness."
+    },
+    "monthly": {
+      "health": "Lunar adjustments require careful stress management. Balance intense working hours with downtime.",
+      "travel": "Favorable configurations appear for landscape changes or heading to rural areas to reset.",
+      "money": "This month demands a conservative fiscal approach. Prioritize critical liquidity preservation.",
+      "love": "Emotional waves settle into a steady rhythm. Common family targets become much easier to outline.",
+      "precautions": "Do not let fleeting workplace challenges spill over or cause emotional friction at home."
+    },
+    "macro": {
+      "health": "The 60-year global Jupiter-Saturn structural returns cross your 30-year physical bio-rhythm node.",
+      "travel": "Macro charts show favorable indicators for international relocations or long maritime travel arcs.",
+      "money": "Multi-decade layouts emphasize long-term asset accumulation over swift capital speculation.",
+      "love": "Karmic balancing loops clear out multi-year friction cycles within your primary domestic houses.",
+      "precautions": "Guard physical signatures from vague phrasing. Shield assets from highly volatile market adjustments."
+    }
+  }
+}
