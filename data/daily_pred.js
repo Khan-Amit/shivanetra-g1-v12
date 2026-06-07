@@ -1,4 +1,3 @@
-// f. Daily Prediction Engine
 export function getDailyPredictions(name, place) {
   return {
     health: "Vitality fields remain functional. Keep hydration cycles high to balance your solar transits.",
