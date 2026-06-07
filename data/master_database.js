@@ -1,4 +1,3 @@
-// d. Total Prediction Combined 60+30 Years Database
 export const master6030Database = {
   health: "The 60-year global Saturnian cycle crosses your 30-year physical bio-rhythm node. Focus on structural longevity, spinal bone health, and maintaining deep sleep cycles.",
   travel: "Macro alignment indicators point toward favorable transits along standard long-distance coordinates. Planetary shifts protect voyages crossing large bodies of water.",
