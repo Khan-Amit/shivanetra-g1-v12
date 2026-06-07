@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shivanetra Suite</title>
   <style>
+    /* Reset & Mobile-First Pure CSS Engine */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #000000; color: #ffffff; font-family: -apple-system, system-ui, sans-serif; padding: 20px; max-width: 420px; margin: 0 auto; }
+    body { background-color: #000000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; max-width: 420px; margin: 0 auto; }
     
+    /* Header UI Parameters */
     header { text-align: center; padding: 25px 0; border-bottom: 1px solid #1c1c1c; margin-bottom: 25px; }
-    h1 { font-size: 34px; font-weight: 900; tracking: 6px; color: #ffffff; text-transform: uppercase; }
+    h1 { font-size: 34px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 4px; }
     .sub-head { color: #48BB78; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
     
+    /* Card Elements & Dynamic Input Form Framework */
     .card { background-color: #0b0b0b; border: 1px solid #1c1c1c; padding: 22px; border-radius: 8px; margin-bottom: 15px; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-size: 11px; color: #a3a3a3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
@@ -19,29 +22,41 @@
     input[type="text"], input[type="time"], select {
       width: 100%; background-color: #141414; border: 1px solid #262626; color: #ffffff; 
       padding: 12px; font-size: 14px; border-radius: 6px; outline: none; display: block;
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
     }
     input:focus, select:focus { border-color: #ffffff; }
+    
+    /* Cross-Browser Custom Native Selection Arrow Indicators */
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://w3.org'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px;
+    }
+    
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     
+    /* Lo Shu Matrix Section Grid Styles */
     .loshu-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; max-width: 180px; margin: 20px auto; background-color: #000; padding: 6px; border: 1px solid #222; }
     .loshu-cell { border: 1px solid #111; padding: 14px 0; text-align: center; font-size: 16px; color: #2a2a2a; font-weight: bold; }
     .loshu-active { color: #48BB78 !important; font-weight: 900 !important; background-color: #141414; border-color: #48BB78; }
 
+    /* Inverted High-Contrast White Background Natal Chart Matrix */
     .natal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; max-width: 290px; margin: 20px auto; background-color: #d4d4d4; padding: 2px; border-radius: 4px; }
     .natal-cell { background-color: #ffffff; color: #000000; height: 75px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; font-family: monospace; font-size: 10px; }
-    .natal-cell .label { color: #8a8a8a; font-size: 9px; font-weight: bold; }
-    .natal-cell .val { font-weight: 900; text-align: center; color: #111; line-height: 1.2; }
+    .natal-cell .label { color: #8a8a8a; font-size: 9px; font-weight: bold; text-align: left; }
+    .natal-cell .val { font-weight: 900; text-align: center; color: #111; line-height: 1.2; white-space: pre-line; }
     .natal-center { background-color: #f4f4f4; color: #737373; justify-content: center; align-items: center; font-weight: 900; font-size: 10px; letter-spacing: 1px; }
 
+    /* Prediction Panels & Horizontal Navigation Button Links */
     .tab-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; }
-    .tab-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 8px 0; cursor: pointer; }
+    .tab-btn { background: none; border: none; color: #525252; font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 8px 0; cursor: pointer; outline: none; }
     .tab-active { color: #48BB78; border-bottom: 2px solid #48BB78; }
     
     .pred-item { background-color: #000000; border: 1px solid #111; padding: 14px; border-radius: 6px; margin-bottom: 10px; }
     .pred-title { font-size: 10px; font-weight: bold; text-transform: uppercase; color: #48BB78; margin-bottom: 4px; display: block; }
     .pred-text { font-size: 13px; color: #d4d4d4; text-align: justify; line-height: 1.4; }
     
+    /* Footer Stepper Controls Frame */
     footer { border-top: 1px solid #1c1c1c; margin-top: 40px; padding-top: 20px; }
     .btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
     button.primary { flex: 1; background-color: #ffffff; color: #000000; border: none; padding: 15px; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border-radius: 6px; cursor: pointer; }
@@ -56,13 +71,14 @@
 </head>
 <body>
 
+  <!-- STARK WHITE ON BLACK APPLICATION HEADER -->
   <header>
     <h1>SHIVANETRA</h1>
     <div id="sub-header" class="sub-head">Daily Horoscope Calculator</div>
   </header>
 
   <main>
-    <!-- PAGE 1: FIXED DROP-DOWN INPUT LAYOUT -->
+    <!-- STEP 1: CONCISE DROP-DOWN INPUT CORE REGISTER -->
     <section id="step-1" class="card">
       <div class="form-group">
         <label>Full Birth Name</label>
@@ -96,7 +112,7 @@
       </div>
     </section>
 
-    <!-- PAGE 2: HIGH-CONTRAST NATAL CHART GRID -->
+    <!-- STEP 2: SURYA SIDDHANTA DATA ENGINE & NATAL PLACEMENTS -->
     <section id="step-2" class="card hidden">
       <label style="margin-bottom: 8px;">a. Surya Siddhanta Log Data</label>
       <div id="surya-log" class="log-box" style="margin-bottom: 20px;"></div>
@@ -115,14 +131,14 @@
       </div>
     </section>
 
-    <!-- PAGE 3: KABBALAH VALUE PAGE -->
+    <!-- STEP 3: KABBALAH VIBRATORY SIGNATURE PANEL -->
     <section id="step-3" class="card hidden text-center">
       <label>b. Kabbalah Alphanumeric Result</label>
       <div id="kabala-val" style="font-size: 64px; font-weight: 900; color: #48BB78; padding: 20px 0;">--</div>
       <p id="kabala-desc" class="pred-text" style="color: #a3a3a3;"></p>
     </section>
 
-    <!-- PAGE 4: FENG SHUI / LO SHU DISPLAY LAYOUT -->
+    <!-- STEP 4: CHINESE LO SHU GRID META-MATRIX -->
     <section id="step-4" class="card hidden">
       <label class="text-center">c. Lo Shu Grid Metaphysics</label>
       <div class="loshu-grid">
@@ -135,28 +151,8 @@
       </p>
     </section>
 
-    <!-- PAGE 5: SYSTEM TIMELINE DASHBOARD -->
+    <!-- STEP 5: INTEGRATED CHRONO-TIMELINE OUTPUT DASHBOARD -->
     <section id="step-5" class="card hidden">
       <div class="tab-container">
         <button id="tab-f" class="tab-btn tab-active">f. Daily</button>
         <button id="tab-g" class="tab-btn">g. Monthly</button>
-        <button id="tab-d" class="tab-btn">d. 60+30 Matrix</button>
-      </div>
-
-      <div class="pred-item"><span class="pred-title">🏥 Health</span><p id="p-health" class="pred-text"></p></div>
-      <div class="pred-item"><span class="pred-title">✈️ Travel</span><p id="p-travel" class="pred-text"></p></div>
-      <div class="pred-item"><span class="pred-title">💰 Money</span><p id="p-money" class="pred-text"></p></div>
-      <div class="pred-item"><span class="pred-title">❤️ Love</span><p id="p-love" class="pred-text"></p></div>
-      <div class="pred-item" style="border-color: rgba(229,62,62,0.3);"><span class="pred-title" style="color:#E53E3E;">⚠️ Precautions</span><p id="p-precaution" class="pred-text"></p></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="btn-group">
-      <button id="btn-back" class="secondary hidden">Back</button>
-      <button id="btn-next" class="primary">Next</button>
-    </div>
-    <button id="btn-download" class="dl-btn">💾 Download Page HTML</button>
-    <span class="version-tag">SHIVANETRA v1.0</span>
-  </footer>
-
