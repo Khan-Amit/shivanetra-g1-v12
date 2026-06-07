@@ -6,16 +6,24 @@
   <title>Shivanetra Engine</title>
   <script src="https://tailwindcss.com"></script>
   <style>
-    /* Pure Black Base Template */
     body { background-color: #000000; color: #FFFFFF; font-family: ui-sans-serif, system-ui, sans-serif; }
     .text-brand-green { color: #48BB78; }
     .text-brand-red { color: #E53E3E; }
     .bg-brand-red { background-color: #E53E3E; }
+    /* Style overrides to make native mobile dropdown look sleek on pitch black background */
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://w3.org'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 6px center;
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen justify-between p-4 max-w-md mx-auto relative select-none">
 
-  <!-- 🧲 STARK BLACK HEADER BLOCK WITH WHITE BOLD TYPOGRAPHY -->
+  <!-- STARK BLACK HEADER BLOCK WITH WHITE BOLD TYPOGRAPHY -->
   <header class="bg-black text-center pt-6 pb-4 border-b border-neutral-900">
     <h1 class="text-3xl font-black tracking-widest text-white uppercase">
       SHIVANETRA
@@ -35,19 +43,52 @@
           <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Full Birth Name</label>
           <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="Enter full name">
         </div>
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Date of Birth</label>
-            <input type="date" id="input-dob" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white">
+
+        <!-- 🔄 UPDATED COMPONENT: MANUAL DROPDOWN SELECTOR ARRAYS FOR BIRTH DATE -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Date of Birth</label>
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <select id="dob-day" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
+                <option value="">Day</option>
+                <!-- Generated dynamically via tracking loop script -->
+              </select>
+            </div>
+            <div>
+              <select id="dob-month" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
+                <option value="">Month</option>
+                <option value="01">Jan</option>
+                <option value="02">Feb</option>
+                <option value="03">Mar</option>
+                <option value="04">Apr</option>
+                <option value="05">May</option>
+                <option value="06">Jun</option>
+                <option value="07">Jul</option>
+                <option value="08">Aug</option>
+                <option value="09">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+            </div>
+            <div>
+              <select id="dob-year" class="w-full bg-neutral-900 border border-neutral-800 rounded pl-3 pr-6 py-2 text-sm text-white focus:outline-none focus:border-white">
+                <option value="">Year</option>
+                <!-- Generated dynamically via tracking loop script -->
+              </select>
+            </div>
           </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Time</label>
             <input type="time" id="input-time" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white">
           </div>
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Place</label>
-          <input type="text" id="input-place" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="e.g. Dhaka, London, New York">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Place</label>
+            <input type="text" id="input-place" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-white" placeholder="e.g. Dhaka, London">
+          </div>
         </div>
       </div>
     </section>
@@ -62,7 +103,6 @@
         
         <div>
           <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">e. Calculated Natal Chart Grid</h3>
-          <!-- Target render slot for custom layout inversion matrix -->
           <div id="natal-chart-slot"></div>
         </div>
       </div>
@@ -134,7 +174,7 @@
 
   </main>
 
-  <!-- NAVIGATION SYSTEM CONTROL FRAME -->
+  <!-- NAVIGATION CONTROL ELEMENT -->
   <footer class="space-y-3 pb-2 border-t border-neutral-900 pt-4">
     <div class="flex gap-2">
       <button id="btn-back" class="hidden w-1/3 bg-neutral-950 border border-neutral-800 text-xs uppercase font-bold py-3 rounded active:bg-neutral-900 transition">Back</button>
@@ -142,39 +182,3 @@
     </div>
     
     <div class="flex justify-between items-center text-[10px] text-neutral-600 pt-2">
-      <button id="btn-download" class="hover:text-neutral-400 transition underline tracking-wider uppercase font-bold">💾 Download Current View</button>
-      <span class="font-mono tracking-widest text-neutral-700">SHIVANETRA v1.0</span>
-    </div>
-  </footer>
-
-  <!-- CONTROLLER SCRIPT -->
-  <script type="module">
-    import { calculateSuryaHoroscope } from './data/surya_horoscope.js';
-    import { calculateKabala } from './data/kabala.js';
-    import { calculateChineseZodiac } from './data/chinese_zodiac.js';
-    import { master6030Database } from './data/master_database.js';
-    import { generateNatalChartUI } from './data/natal_chart.js';
-    import { getDailyPredictions } from './data/daily_pred.js';
-    import { getMonthlyPredictions } from './data/monthly_pred.js';
-
-    let activeStep = 1;
-    const maxSteps = 5;
-
-    document.addEventListener("DOMContentLoaded", () => {
-      if (localStorage.getItem("sn_logged_name")) {
-        document.getElementById("input-name").value = localStorage.getItem("sn_logged_name");
-        document.getElementById("input-dob").value = localStorage.getItem("sn_logged_dob");
-        document.getElementById("input-time").value = localStorage.getItem("sn_logged_time");
-        document.getElementById("input-place").value = localStorage.getItem("sn_logged_place");
-      }
-    });
-
-    function preserveLoginData() {
-      localStorage.setItem("sn_logged_name", document.getElementById("input-name").value);
-      localStorage.setItem("sn_logged_dob", document.getElementById("input-dob").value);
-      localStorage.setItem("sn_logged_time", document.getElementById("input-time").value);
-      localStorage.setItem("sn_logged_place", document.getElementById("input-place").value);
-    }
-
-    function runCoreCalculations() {
-      const name = document.getElementById("input-name").value;
