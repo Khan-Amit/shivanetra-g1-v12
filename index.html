@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivanetra - Daily Horoscope & Esoteric Suite</title>
-  <!-- Tailwind CSS CDN for high-utility styling -->
+  <title>Shivanetra Engine</title>
   <script src="https://tailwindcss.com"></script>
   <style>
-    /* Absolute match to your design parameters */
     body { background-color: #000000; color: #FFFFFF; font-family: ui-sans-serif, system-ui, sans-serif; }
     .text-brand-red { color: #E53E3E; }
     .border-brand-red { border-color: #E53E3E; }
@@ -17,145 +15,164 @@
 </head>
 <body class="flex flex-col min-h-screen justify-between p-4 max-w-md mx-auto relative select-none">
 
-  <!-- ================= HEADER SECTION ================= -->
+  <!-- SYSTEM HEADER FRAMEWORK -->
   <header class="text-center pt-4">
     <h1 class="text-3xl font-extrabold tracking-wider text-brand-red uppercase border-b-4 border-brand-red inline-block px-4 pb-1">
       Shivanetra
     </h1>
-    <!-- Dynamic subheader text matching consecutive pages -->
     <p id="sub-header" class="text-brand-green text-xs font-bold tracking-widest uppercase mt-2">
       Daily Horoscope Calculator
     </p>
   </header>
 
-  <!-- ================= CENTRAL INTERACTIVE CONTAINER ================= -->
+  <!-- STEP CONTAINER ROUTER -->
   <main class="flex-grow flex flex-col justify-center my-6">
     
-    <!-- STEP 1: LANDING PAGE INPUT & PERSISTENT LOGIN -->
+    <!-- PAGE 1: UNIVERSAL LANDING PAGE & LOGIN STATE -->
     <section id="step-1" class="space-y-4">
-      <!-- Embedded Visual Graphic Asset Wrapper -->
       <div class="flex justify-center mb-2">
-        <div class="w-32 h-20 border border-neutral-800 rounded flex items-center justify-center text-xs text-neutral-500 bg-neutral-950">
-          [ Yin-Yang Eye Graphic ]
+        <!-- Visual Accent matching image header profile -->
+        <div class="w-24 h-24 rounded-full border-2 border-dashed border-neutral-800 flex items-center justify-center bg-neutral-950 font-mono text-xs text-neutral-600 animate-spin-slow">
+          ☯️ 👁️ ☯️
         </div>
       </div>
       
       <div class="space-y-3 bg-neutral-950 p-5 rounded-lg border border-neutral-900">
         <div>
           <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Full Birth Name</label>
-          <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand-red" placeholder="e.g. John Doe">
+          <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-red" placeholder="Enter full name">
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Date of Birth</label>
-            <input type="date" id="input-dob" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand-red">
+            <input type="date" id="input-dob" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Time</label>
-            <input type="time" id="input-time" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand-red">
+            <input type="time" id="input-time" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
           </div>
         </div>
         <div>
           <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-1">Birth Place</label>
-          <input type="text" id="input-place" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand-red" placeholder="e.g. Dhaka, London, New York">
+          <input type="text" id="input-place" class="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-red" placeholder="e.g. Dhaka, London, New York">
         </div>
       </div>
     </section>
 
-    <!-- STEP 2: SURYA SIDDHANTA HOROSCOPE & NATAL CHART -->
-    <section id="step-2" class="hidden space-y-3">
-      <h2 class="text-sm font-bold uppercase text-brand-red tracking-wider">a & e. Surya Siddhanta Natal Chart</h2>
-      <div class="border border-neutral-800 p-4 rounded bg-neutral-950 text-xs space-y-2">
-        <div class="grid grid-cols-3 gap-1 text-center font-mono text-[10px]">
-          <div class="border border-neutral-800 p-2">Ascendant</div>
-          <div class="border border-neutral-800 p-2 bg-neutral-900 text-brand-green">Sun</div>
-          <div class="border border-neutral-800 p-2">Moon</div>
-          <div class="border border-neutral-800 p-2">Mars</div>
-          <div class="border border-neutral-800 p-2 bg-neutral-900">Mercury</div>
-          <div class="border border-neutral-800 p-2">Jupiter</div>
-          <div class="border border-neutral-800 p-2 text-brand-green">Venus</div>
-          <div class="border border-neutral-800 p-2">Saturn</div>
-          <div class="border border-neutral-800 p-2 bg-neutral-900">Rahu/Ketu</div>
-        </div>
-        <p class="text-neutral-400 pt-2 text-justify">Your astronomical calculations match precisely with ancient solar planetary longitudes relative to your coordinate position.</p>
-      </div>
-    </section>
-
-    <!-- STEP 3: KABBALAH NUMEROLOGY -->
-    <section id="step-3" class="hidden space-y-3">
-      <h2 class="text-sm font-bold uppercase text-brand-red tracking-wider">b. Kabbalah Vibrational Profile</h2>
-      <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-2">
-        <p class="text-xs text-neutral-400">Vibrational Signature Value for Name: <span id="kabbalah-name-display" class="text-white font-bold"></span></p>
-        <div class="text-3xl font-black text-brand-green text-center py-2" id="kabbalah-result">--</div>
-        <p class="text-xs text-neutral-400 text-justify">This number dictates the underlying sonic resonance of your physical identity across external timelines.</p>
-      </div>
-    </section>
-
-    <!-- STEP 4: CHINESE METAPHYSICS & LO SHU GRID -->
-    <section id="step-4" class="hidden space-y-3">
-      <h2 class="text-sm font-bold uppercase text-brand-red tracking-wider">c. Feng Shui & Chinese Zodiac</h2>
+    <!-- PAGE 2: HOROSCOPE & NATAL CHART CONTAINER -->
+    <section id="step-2" class="hidden space-y-4">
       <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-3">
-        <div class="grid grid-cols-3 gap-1 max-w-[180px] mx-auto text-center font-bold text-sm bg-black p-1 border border-neutral-800">
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-4">4</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-9">9</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-2">2</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-3">3</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-5">5</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-7">7</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-8">8</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-1">1</div>
-          <div class="border border-neutral-900 p-2 text-neutral-600" id="ls-6">6</div>
-        </div>
-        <div class="text-xs text-neutral-400 space-y-1 text-center border-t border-neutral-900 pt-2">
-          <p>Calculated Zodiac: <span id="zodiac-result" class="text-white font-bold">--</span></p>
-        </div>
+        <h3 class="text-xs font-bold text-brand-red uppercase tracking-wider">a. Surya Siddhanta Log Data</h3>
+        <p id="surya-log" class="text-xs text-neutral-400 font-mono bg-black p-2 rounded border border-neutral-900 text-justify"></p>
+        
+        <h3 class="text-xs font-bold text-brand-red uppercase tracking-wider pt-2">e. Calculated Natal Chart Grid</h3>
+        <div id="natal-chart-slot"></div>
       </div>
     </section>
 
-    <!-- STEP 5: MASTER PREDICTION TIMELINE ENGINE (60+30 YEARS) -->
+    <!-- PAGE 3: KABBALAH CODE CONTAINER -->
+    <section id="step-3" class="hidden space-y-3">
+      <div class="border border-neutral-800 p-5 rounded bg-neutral-950 space-y-3 text-center">
+        <h3 class="text-xs font-bold text-brand-red uppercase tracking-widest">b. Kabbalah Alphanumeric Result</h3>
+        <div class="text-5xl font-black text-brand-green py-4 tracking-tighter" id="kabala-val">--</div>
+        <p id="kabala-desc" class="text-xs text-neutral-400 text-justify px-2"></p>
+      </div>
+    </section>
+
+    <!-- PAGE 4: FENG SHUI / LO SHU & CHINESE ZODIAC CONTAINER -->
+    <section id="step-4" class="hidden space-y-4">
+      <div class="border border-neutral-800 p-4 rounded bg-neutral-950 space-y-3">
+        <h3 class="text-xs font-bold text-brand-red uppercase tracking-widest text-center">c. Lo Shu Grid Metaphysics</h3>
+        
+        <div class="grid grid-cols-3 gap-1 max-w-[160px] mx-auto text-center font-bold text-sm bg-black p-1 border border-neutral-900">
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-4">4</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-9">9</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-2">2</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-3">3</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-5">5</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-7">7</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-8">8</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-1">1</div>
+          <div class="border border-neutral-900 p-2 text-neutral-800" id="ls-6">6</div>
+        </div>
+        
+        <p class="text-center text-xs text-neutral-300 border-t border-neutral-900 pt-2 font-mono">
+          Calculated Chinese Zodiac: <span id="zodiac-val" class="text-brand-green font-bold">--</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- PAGE 5: DYNAMIC PREDICTIONS PANEL (DAILY / MONTHLY / 60+30 YEARS) -->
     <section id="step-5" class="hidden space-y-3">
-      <h2 class="text-sm font-bold uppercase text-brand-red tracking-wider">d, f & g. Combined Metaphysical Predictions</h2>
-      
-      <!-- Sub-tabs for prediction horizons -->
-      <div class="grid grid-cols-3 gap-1 text-[10px] uppercase font-bold text-center border-b border-neutral-800 pb-2">
-        <button id="tab-btn-daily" class="text-brand-green border-b border-brand-green pb-1" onclick="switchHorizon('daily')">Daily</button>
-        <button id="tab-btn-monthly" class="text-neutral-500 pb-1" onclick="switchHorizon('monthly')">Monthly</button>
-        <button id="tab-btn-macro" class="text-neutral-500 pb-1" onclick="switchHorizon('macro')">60+30 Yr Matrix</button>
+      <div class="grid grid-cols-3 gap-1 text-[10px] uppercase font-bold text-center border-b border-neutral-900 pb-2 mb-2">
+        <button id="tab-f" class="text-brand-green border-b-2 border-brand-green pb-1" data-type="f">f. Daily</button>
+        <button id="tab-g" class="text-neutral-500 pb-1" data-type="g">g. Monthly</button>
+        <button id="tab-d" class="text-neutral-500 pb-1" data-type="d">d. 60+30 Matrix</button>
       </div>
 
-      <!-- Core Output Categorization Block -->
-      <div class="space-y-2 text-xs max-h-[260px] overflow-y-auto pr-1">
-        <div class="bg-neutral-950 p-2.5 border border-neutral-900 rounded">
-          <h3 class="font-bold text-brand-green uppercase text-[10px]">❤️ Love</h3>
-          <p id="pred-love" class="text-neutral-400 text-justify mt-0.5">Loading data calculations...</p>
+      <div class="space-y-2 text-xs max-h-[260px] overflow-y-auto pr-1" id="predictions-box">
+        <!-- Render Blocks -->
+        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
+          <span class="text-[10px] uppercase font-bold text-brand-green">🏥 Health</span>
+          <p id="p-health" class="text-neutral-400 mt-0.5 text-justify"></p>
         </div>
-        <div class="bg-neutral-950 p-2.5 border border-neutral-900 rounded">
-          <h3 class="font-bold text-brand-green uppercase text-[10px]">💰 Money</h3>
-          <p id="pred-money" class="text-neutral-400 text-justify mt-0.5">Loading data calculations...</p>
+        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
+          <span class="text-[10px] uppercase font-bold text-brand-green">✈️ Travel</span>
+          <p id="p-travel" class="text-neutral-400 mt-0.5 text-justify"></p>
         </div>
-        <div class="bg-neutral-950 p-2.5 border border-neutral-900 rounded">
-          <h3 class="font-bold text-brand-green uppercase text-[10px]">🏥 Health</h3>
-          <p id="pred-health" class="text-neutral-400 text-justify mt-0.5">Loading data calculations...</p>
+        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
+          <span class="text-[10px] uppercase font-bold text-brand-green">💰 Money</span>
+          <p id="p-money" class="text-neutral-400 mt-0.5 text-justify"></p>
         </div>
-        <div class="bg-neutral-950 p-2.5 border border-neutral-900 rounded">
-          <h3 class="font-bold text-brand-green uppercase text-[10px]">✈️ Travel</h3>
-          <p id="pred-travel" class="text-neutral-400 text-justify mt-0.5">Loading data calculations...</p>
+        <div class="bg-neutral-950 p-2 rounded border border-neutral-900">
+          <span class="text-[10px] uppercase font-bold text-brand-green">❤️ Love</span>
+          <p id="p-love" class="text-neutral-400 mt-0.5 text-justify"></p>
         </div>
-        <div class="bg-neutral-950 p-2.5 border border-brand-red/30 rounded">
-          <h3 class="font-bold text-brand-red uppercase text-[10px]">⚠️ Precautions</h3>
-          <p id="pred-precautions" class="text-neutral-400 text-justify mt-0.5">Loading data calculations...</p>
+        <div class="bg-neutral-950 p-2 rounded border border-brand-red/30">
+          <span class="text-[10px] uppercase font-bold text-brand-red">⚠️ Precautions</span>
+          <p id="p-precaution" class="text-neutral-400 mt-0.5 text-justify"></p>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ================= CONTROL NAVIGATION AND DOWNLOAD SYSTEM ================= -->
+  <!-- CONTROL FOOTER SYSTEM -->
   <footer class="space-y-3 pb-2">
     <div class="flex gap-2">
-      <!-- Back / Next Button Interface Configuration -->
-      <button id="btn-back" class="hidden w-1/3 bg-neutral-900 border border-neutral-800 text-xs uppercase font-bold py-3 rounded active:bg-neutral-800 transition">Back</button>
+      <button id="btn-back" class="hidden w-1/3 bg-neutral-950 border border-neutral-800 text-xs uppercase font-bold py-3 rounded active:bg-neutral-900 transition">Back</button>
       <button id="btn-next" class="w-full bg-brand-red text-xs uppercase font-black tracking-widest py-3 rounded active:scale-[0.99] transition">Next</button>
     </div>
     
     <div class="flex justify-between items-center text-[10px] text-neutral-600 border-t border-neutral-900 pt-2">
+      <button id="btn-download" class="hover:text-neutral-400 transition underline tracking-wider uppercase font-bold">💾 Download Current View</button>
+      <span class="font-mono tracking-widest text-neutral-700">SHIVANETRA v1.0</span>
+    </div>
+  </footer>
+
+  <!-- MODULE EXECUTION DISPATCHER -->
+  <script type="module">
+    // Modern script structure explicitly pulling components from decoupled data assets
+    import { calculateSuryaHoroscope } from './data/surya_horoscope.js';
+    import { calculateKabala } from './data/kabala.js';
+    import { calculateChineseZodiac } from './data/chinese_zodiac.js';
+    import { master6030Database } from './data/master_database.js';
+    import { generateNatalChartUI } from './data/natal_chart.js';
+    import { getDailyPredictions } from './data/daily_pred.js';
+    import { getMonthlyPredictions } from './data/monthly_pred.js';
+
+    let activeStep = 1;
+    const maxSteps = 5;
+
+    // Persistent login loop check
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("sn_logged_name")) {
+        document.getElementById("input-name").value = localStorage.getItem("sn_logged_name");
+        document.getElementById("input-dob").value = localStorage.getItem("sn_logged_dob");
+        document.getElementById("input-time").value = localStorage.getItem("sn_logged_time");
+        document.getElementById("input-place").value = localStorage.getItem("sn_logged_place");
+      }
+    });
+
+    function preserveLoginData() {
+      localStorage.setItem("sn_logged_name", document.getElementById("input-name").value);
