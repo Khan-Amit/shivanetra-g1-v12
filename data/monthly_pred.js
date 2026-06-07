@@ -1,4 +1,3 @@
-// g. Monthly Prediction Engine
 export function getMonthlyPredictions(name) {
   return {
     health: "Lunar transitions ask you to prioritize stress management. Balance active hours with structured relaxation.",
